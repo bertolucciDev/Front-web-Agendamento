@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/custom/button"
 import { Link } from "react-router-dom"
 
 export function NotFoundPage() {
@@ -16,12 +17,11 @@ export function NotFoundPage() {
           A página que você está tentando acessar não existe ou foi movida.
         </p>
 
-        <Link
-          to="/"
-          className="inline-block mt-8 rounded-lg bg-blue-600 px-6 py-3 text-white font-medium shadow-md hover:bg-blue-700 transition-colors duration-200"
-        >
-          Voltar para o início
-        </Link>
+        <Button variant="primary" size="lg">
+          <Link to="/">
+            Voltar para o início
+          </Link>
+        </Button>
       </div>
     </div>
   )
