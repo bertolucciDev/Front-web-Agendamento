@@ -2,6 +2,7 @@ import { LandingPage } from "@/pages/public/landing-page";
 import { NotFoundPage } from "@/pages/not-found";
 import { Route, Routes } from "react-router-dom";
 import { DashboardPage } from "@/pages/private/dashboard";
+import { LoginPage } from "@/pages/private/auth/login";
 
 export default function RoutesApp() {
   return (
@@ -10,9 +11,9 @@ export default function RoutesApp() {
 
       <Route path="/" element={<LandingPage />} />
 
-      <Route path="/dashboard" element={<DashboardPage />} >
-        <Route path=":id" element={<DashboardPage />} />
-      </Route>"
+      <Route path="/dashboard" element={<DashboardPage />} />
+
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   )
 }
