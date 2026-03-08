@@ -12,6 +12,6 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <RoutesApp />
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 </QueryClientProvider>
 )

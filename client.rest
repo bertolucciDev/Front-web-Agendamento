@@ -1,0 +1,7 @@
+POST https://api-agendaqui.vercel.app/auth/sign-in
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "Password123!"
+}

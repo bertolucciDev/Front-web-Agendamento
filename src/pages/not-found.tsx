@@ -1,7 +1,20 @@
 import { Button } from "@/components/ui/custom/button"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 export function NotFoundPage() {
+  const [loading, setLoading] = useState(false);
+
+  function handleSubmit() {
+    try{
+      setLoading(false)
+
+      new Promise(resolve => setTimeout(resolve, 3000))
+    }finally {
+      setLoading(true)
+    }
+  }
+
   return (
     <div className="flex min-h-dvh w-full items-center justify-center bg-gray-50 px-6">
       <div className="text-center max-w-md">
@@ -17,11 +30,17 @@ export function NotFoundPage() {
           A página que você está tentando acessar não existe ou foi movida.
         </p>
 
-        <Button variant="primary" size="lg">
-          <Link to="/">
-            Voltar para o início
-          </Link>
-        </Button>
+          <Button
+            size="lg"
+            variant="primary"
+            className="mt-8"
+            loading={loading}
+            onClick={handleSubmit}
+          >
+            <Link to="/">
+              Voltar para o início
+            </Link>
+          </Button>
       </div>
     </div>
   )
