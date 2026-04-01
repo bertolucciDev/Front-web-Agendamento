@@ -40,18 +40,24 @@ export function Button({
   return (
     <button
       className={cn(
-        baseStyles,
-        variantMap[variant],
-        sizeMap[size],
-        className
-      )}
-      disabled={loading || disabled}
-      {...props}
-    >
+      baseStyles,
+      "relative flex items-center justify-center",
+      variantMap[variant],
+      sizeMap[size],
+      className
+    )}
+    disabled={loading || disabled}
+    {...props}
+  >
       {loading && (
+      <span className="absolute inset-0 flex items-center justify-center">
         <Spinner />
-      )}
+      </span>
+    )}
+
+    <span className={cn(loading && "opacity-0")}>
       {children}
-    </button>
+    </span>
+  </button>
   )
 }
