@@ -82,8 +82,12 @@ export function RegisterForm() {
   }
 
   async function onSubmit(data: RegisterSchema) {
-    await mutateAsync(data)
-    navigate("/login")
+    try {
+      await mutateAsync(data)
+      navigate("/login")
+    } catch {
+      // erro tratado no TanStack Query
+    }
   }
 
   return (
