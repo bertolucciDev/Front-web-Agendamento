@@ -18,11 +18,11 @@ import {
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/custom/button"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { saveToken } from "@/modules/user/auth/utils/token"
 
 export function LoginForm() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
 
   const { mutateAsync, isPending, error } = useLogin()
@@ -39,30 +39,22 @@ export function LoginForm() {
     try {
       const response = await mutateAsync(data)
       saveToken(response.accessToken)
-
       navigate("/dashboard")
-
     } catch {
-      // erro tratado pelo TanStack
+      // erro tratado no TanStack Query
     }
   }
 
   return (
-    <div className="w-[380px] text-white">
-      <h1 className="text-2xl font-semibold mb-2">
-        Bem-vindo novamente
-      </h1>
+    <div className="w-full max-w-[460px] rounded-2xl border border-slate-700 bg-slate-900/70 p-8 text-white shadow-2xl backdrop-blur">
+      <h1 className="mb-2 text-2xl font-semibold">Bem-vindo novamente</h1>
 
-      <p className="text-sm text-gray-300 mb-8">
+      <p className="mb-8 text-sm text-slate-300">
         Entre com suas credenciais para acessar a plataforma
       </p>
 
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6"
-        >
-          {/* EMAIL */}
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
             control={form.control}
             name="email"
@@ -73,7 +65,7 @@ export function LoginForm() {
                 <FormControl>
                   <Input
                     placeholder="Digite seu email"
-                    className="h-11 bg-[#2A3447] border-[#5C6B84]"
+                    className="h-11 border-slate-600 bg-slate-800"
                     {...field}
                   />
                 </FormControl>
@@ -83,7 +75,6 @@ export function LoginForm() {
             )}
           />
 
-          {/* PASSWORD */}
           <FormField
             control={form.control}
             name="password"
@@ -96,20 +87,16 @@ export function LoginForm() {
                     <Input
                       type={showPassword ? "text" : "password"}
                       placeholder="Digite sua senha"
-                      className="h-11 bg-[#2A3447] border-[#5C6B84] pr-10"
+                      className="h-11 border-slate-600 bg-slate-800 pr-10"
                       {...field}
                     />
 
                     <button
                       type="button"
-                      onClick={() => setShowPassword(prev => !prev)}
+                      onClick={() => setShowPassword((prev) => !prev)}
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
                     >
-                      {showPassword ? (
-                        <EyeOff size={18} />
-                      ) : (
-                        <Eye size={18} />
-                      )}
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                   </div>
                 </FormControl>
@@ -119,30 +106,29 @@ export function LoginForm() {
             )}
           />
 
-          {/* ERRO DA API */}
           <div className="h-5 text-center">
-            {error && (
-              <p className="text-red-400 text-sm">
+            {error ? (
+              <p className="text-sm text-red-400">
                 {error.response?.data.message ?? "Erro ao fazer login"}
               </p>
-            )}
+            ) : null}
           </div>
 
           <Button
             type="submit"
             variant="primary"
-            size="md"
+            size="lg"
             loading={isPending}
-            className="w-full bg-[#7E9BEF] hover:bg-[#6B88D9]"
+            className="w-full"
           >
             Entrar
           </Button>
 
-          <p className="text-sm text-gray-300 text-center">
-            Esqueceu sua senha?{" "}
-            <span className="underline cursor-pointer">
-              Clique aqui
-            </span>
+          <p className="text-center text-sm text-slate-300">
+            Ainda não tem conta?{" "}
+            <Link className="font-semibold text-blue-300 underline" to="/register">
+              Criar agora
+            </Link>
           </p>
         </form>
       </Form>
