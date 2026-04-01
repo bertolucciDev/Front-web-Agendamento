@@ -1,11 +1,13 @@
-export function saveToken(token: string){
-  localStorage.setItem("token", token)
+const ACCESS_TOKEN_KEY = "accessToken"
+
+export function saveToken(token: string) {
+  localStorage.setItem(ACCESS_TOKEN_KEY, token)
 }
 
-export function getItem() {
-  return localStorage.getItem("token")
+export function getToken() {
+  return localStorage.getItem(ACCESS_TOKEN_KEY)
 }
 
 export function removeToken() {
-  localStorage.removeItem("token")
+  localStorage.removeItem(ACCESS_TOKEN_KEY)
 }
